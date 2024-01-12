@@ -6,17 +6,31 @@ namespace DevDuck
 {
     public class LevelManagement : MonoBehaviour
     {
-        public List<GameObject> maps;
+        public List<map> maps;
+        map mapins;
         public int curLevel;
-
-        public void InsMap()
+        public Transform parent;
+        public static LevelManagement ins;
+        private void Awake()
         {
-            if(curLevel == 0)
+            ins = this;
+        }
+        void Start()
+        {
+
+            increaseLevel();
+        }
+        void increaseLevel()
+        {
+            curLevel = PlayerPrefs.GetInt("indexLevel");
+            foreach (map levelid in maps)
             {
-                for(int i = 0; i < maps.Count; i++)
+                if (levelid.mapId == curLevel)
                 {
-                    GameObject map = Instantiate(maps[i]);
+                    mapins = Instantiate(levelid, parent);
+                    mapins.transform.position = Vector3.zero;
                 }
+
             }
         }
     }
