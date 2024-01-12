@@ -29,6 +29,7 @@ namespace DevDuck
                 {
                     mapins = Instantiate(levelid, parent);
                     mapins.transform.position = Vector3.zero;
+                    Debug.Log("ins map");
                 }
 
             }
